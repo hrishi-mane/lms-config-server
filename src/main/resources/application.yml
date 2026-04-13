@@ -4,14 +4,14 @@ server:
 spring:
   application:
     name: config-server
-  profiles:
-    active: native
   cloud:
     config:
       server:
-        native:
-          # Serve config files from classpath:/config-repo/
-          search-locations: https://github.com/hrishi-mane/lms-config-server
+        git:
+          uri: https://github.com/hrishi-mane/lms-config-server
+          search-paths: src/main/resources/config-repo
+          default-label: master
+          clone-on-start: true
 
 eureka:
   client:
