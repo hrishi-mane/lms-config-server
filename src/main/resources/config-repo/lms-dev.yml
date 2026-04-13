@@ -1,0 +1,29 @@
+# ============================================================
+# DEV profile overrides  — active when spring.profiles.active=dev
+# Served at http://localhost:8888/lms/dev
+# ============================================================
+
+lms:
+  rate-limit:
+    # Relaxed rate limit in dev so manual testing isn't blocked
+    max-requests-per-minute: 100
+    window-ms: 60000
+
+notification:
+  service:
+    url: http://notificationservice
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      bookService:
+        # More forgiving thresholds in dev
+        failure-rate-threshold: 80
+        wait-duration-in-open-state: 5s
+      memberService:
+        failure-rate-threshold: 80
+        wait-duration-in-open-state: 5s
+
+logging:
+  level:
+    com.teamoffour.lms: DEBUG

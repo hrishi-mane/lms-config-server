@@ -1,0 +1,68 @@
+# ============================================================
+# Centralised configuration for the LMS service
+# Served by config-server at http://localhost:8888/lms/default
+# ============================================================
+
+server:
+  port: 8081
+
+spring:
+  application:
+    name: lms
+
+#----Eureka Configuration--------
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+# ---- Rate Limiting (used by RateLimitInterceptor) ----------
+lms:
+  rate-limit:
+    max-requests-per-minute: 20
+    window-ms: 60000
+  reservation:
+    validity-days: 2
+  borrowing:
+    fine-rate-per-day: 0.25
+
+# ---- Actuator exposure for circuit breaker visibility ------
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, circuitbreakers, circuitbreakerevents, metrics
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+
+# ---- Resilience4j Circuit Breaker config -------------------
+resilience4j:
+  circuitbreaker:
+    instances:
+      bookService:
+        sliding-window-size: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 2
+        automatic-transition-from-open-to-half-open-enabled: true
+      memberService:
+        sliding-window-size: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 2
+        automatic-transition-from-open-to-half-open-enabled: true
+  timelimiter:
+    instances:
+      bookService:
+        timeout-duration: 3s
+      memberService:
+        timeout-duration: 3s
