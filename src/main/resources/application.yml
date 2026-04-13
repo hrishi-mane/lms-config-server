@@ -12,6 +12,9 @@ spring:
           search-paths: src/main/resources/config-repo
           default-label: master
           clone-on-start: true
+          force-pull: true
+          username: ${GITHUB_USERNAME}
+          password: ${GITHUB_TOKEN}
 
 eureka:
   client:
