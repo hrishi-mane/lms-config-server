@@ -11,7 +11,7 @@ spring:
       server:
         native:
           # Serve config files from classpath:/config-repo/
-          search-locations: classpath:/config-repo/
+          search-locations: https://github.com/hrishi-mane/lms-config-server
 
 eureka:
   client:

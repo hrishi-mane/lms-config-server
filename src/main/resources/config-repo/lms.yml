@@ -66,3 +66,8 @@ resilience4j:
         timeout-duration: 3s
       memberService:
         timeout-duration: 3s
+  retry:
+    instances:
+      notificationService:
+        max-attempts: 3
+        wait-duration: 2s
