@@ -1,3 +1,3 @@
 sendgrid:
-  api-key: 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
-  from-email: 25230859@studentmail.ul.ie
+  api-key: ${SENDGRID_API_KEY}
+  from-email: ${SENDGRID_FROM_EMAIL}
