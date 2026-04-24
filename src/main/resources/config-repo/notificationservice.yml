@@ -5,12 +5,15 @@ spring:
   application:
     name: notificationservice
 
+#----Email Service Credentials--------
+sendgrid:
+  api-key: ${SENDGRID_API_KEY}
+  from-email: ${SENDGRID_FROM_EMAIL}
+
 
 #----Eureka Configuration--------
 eureka:
   client:
-    service-url:
-      defaultZone: https://lms-eureka-server-production.up.railway.app/
     register-with-eureka: true
     fetch-registry: true
   instance:

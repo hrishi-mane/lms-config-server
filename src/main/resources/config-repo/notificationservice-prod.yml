@@ -1,0 +1,5 @@
+#----Eureka Configuration--------
+eureka:
+  client:
+    service-url:
+      defaultZone: https://lms-eureka-server-production.up.railway.app/

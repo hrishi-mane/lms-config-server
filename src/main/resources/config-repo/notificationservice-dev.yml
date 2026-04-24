@@ -1,3 +1,8 @@
-sendgrid:
-  api-key: ${SENDGRID_API_KEY}
-  from-email: ${SENDGRID_FROM_EMAIL}
+#----Eureka Configuration--------
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+

@@ -8,6 +8,12 @@ lms:
     max-requests-per-minute: 20
     window-ms: 60000
 
+#----Eureka Configuration--------
+eureka:
+  client:
+    service-url:
+      defaultZone: https://lms-eureka-server-production.up.railway.app/
+
 resilience4j:
   circuitbreaker:
     instances:
