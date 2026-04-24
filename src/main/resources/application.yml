@@ -13,8 +13,6 @@ spring:
           default-label: master
           clone-on-start: true
           force-pull: true
-          username: ${GITHUB_USERNAME}
-          password: ${GITHUB_TOKEN}
 
 
 management:
