@@ -14,9 +14,7 @@ spring:
 eureka:
   client:
     service-url:
-
-
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: https://lms-eureka-server-production.up.railway.app/
     register-with-eureka: true
     fetch-registry: true
   instance:
