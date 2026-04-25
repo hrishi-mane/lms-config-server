@@ -9,9 +9,7 @@ lms:
     max-requests-per-minute: 100
     window-ms: 60000
 
-notification:
-  service:
-    url: http://notificationservice
+
 
 #----Eureka Configuration--------
 eureka:

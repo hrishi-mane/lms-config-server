@@ -10,6 +10,10 @@ spring:
   application:
     name: lms
 
+notification:
+  service:
+    url: http://notificationservice
+
 #----Eureka Configuration--------
 eureka:
   client:
