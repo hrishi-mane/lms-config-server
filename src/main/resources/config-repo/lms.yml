@@ -19,9 +19,13 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+    registry-fetch-interval-seconds: 60      # was default 30
+    instance-info-replication-interval-seconds: 60
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 30    # heartbeat frequency (keep at 30)
+    lease-expiration-duration-in-seconds: 90 # server waits this long before removing instance
 
 # ---- Rate Limiting (used by RateLimitInterceptor) ----------
 lms:
@@ -33,30 +37,21 @@ lms:
   borrowing:
     fine-rate-per-day: 0.25
 
-# ---- Actuator exposure for circuit breaker visibility ------
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health, info, circuitbreakers, circuitbreakerevents, metrics
-  endpoint:
-    health:
-      show-details: always
-  health:
-    circuitbreakers:
-      enabled: true
+
 
 # ---- Resilience4j Circuit Breaker config -------------------
 resilience4j:
   circuitbreaker:
     instances:
       bookService:
+        sliding-window-type: COUNT_BASED
         sliding-window-size: 5
         failure-rate-threshold: 50
         wait-duration-in-open-state: 10s
         permitted-number-of-calls-in-half-open-state: 2
         automatic-transition-from-open-to-half-open-enabled: true
       memberService:
+        sliding-window-type: COUNT_BASED
         sliding-window-size: 5
         failure-rate-threshold: 50
         wait-duration-in-open-state: 10s
@@ -71,5 +66,5 @@ resilience4j:
   retry:
     instances:
       notificationService:
-        max-attempts: 3
+        max-attempts: 2
         wait-duration: 2s

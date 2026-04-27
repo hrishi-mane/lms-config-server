@@ -9,7 +9,18 @@ lms:
     max-requests-per-minute: 100
     window-ms: 60000
 
-
+# ---- Actuator exposure for circuit breaker visibility ------
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, circuitbreakers, circuitbreakerevents, metrics
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
 
 #----Eureka Configuration--------
 eureka:

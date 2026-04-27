@@ -8,6 +8,20 @@ lms:
     max-requests-per-minute: 20
     window-ms: 60000
 
+
+# ---- Actuator exposure  ------
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
+  metrics:
+    enable:
+      all: false
+
 #----Eureka Configuration--------
 eureka:
   client:
@@ -30,3 +44,7 @@ logging:
   level:
     com.teamoffour.lms: WARN
     root: ERROR
+
+spring:
+  aop:
+    proxy-target-class: true

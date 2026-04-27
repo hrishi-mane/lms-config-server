@@ -16,6 +16,10 @@ eureka:
   client:
     register-with-eureka: true
     fetch-registry: true
+    registry-fetch-interval-seconds: 60
+    instance-info-replication-interval-seconds: 60
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90

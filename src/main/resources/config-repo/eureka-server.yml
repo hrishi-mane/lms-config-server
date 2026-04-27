@@ -15,11 +15,9 @@ eureka:
     service-url:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
-    # Don't wait for peers on startup (single-node setup)
     wait-time-in-ms-when-sync-empty: 0
-    # Disable self-preservation for dev/demo so instances deregister quickly
     enable-self-preservation: false
-    eviction-interval-timer-in-ms: 5000
+    eviction-interval-timer-in-ms: 30000
 
 management:
   endpoints:
