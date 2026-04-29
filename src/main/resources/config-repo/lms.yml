@@ -50,6 +50,8 @@ resilience4j:
         wait-duration-in-open-state: 10s
         permitted-number-of-calls-in-half-open-state: 2
         automatic-transition-from-open-to-half-open-enabled: true
+        ignoreExceptions:
+          - com.teamoffour.lms.exception.BusinessException
       memberService:
         sliding-window-type: COUNT_BASED
         sliding-window-size: 5
@@ -57,6 +59,8 @@ resilience4j:
         wait-duration-in-open-state: 10s
         permitted-number-of-calls-in-half-open-state: 2
         automatic-transition-from-open-to-half-open-enabled: true
+        ignoreExceptions:
+          - com.teamoffour.lms.exception.BusinessException
   timelimiter:
     instances:
       bookService:
