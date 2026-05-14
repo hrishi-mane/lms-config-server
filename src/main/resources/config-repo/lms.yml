@@ -72,3 +72,11 @@ resilience4j:
       notificationService:
         max-attempts: 2
         wait-duration: 2s
+
+# ---- Swagger Open API config -------------------
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
